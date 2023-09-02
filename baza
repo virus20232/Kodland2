@@ -1,30 +1,14 @@
-import discord
-from discord.ext import commands
+meme_dict = {
+            "КРИНЖ": "Что-то очень странное или стыдное",
+            "ЛОЛ": "Что-то очень смешное",
+            "ПРИЯТНЫЕ СЛОВА ИЗ ДОТЫ": "Я не буду обьяснять, слишком агрессивное обьяснение получиться",
+            "2 ОТЦА": "ну это к-поперши и детские политики",
+            "РКЕРЫ": "бедолаги которых рак мозга",
+            "EZ": "тебя унизили на публике"
+            }
+word = input("Введите непонятное слово:").upper()
 
-intents = discord.Intents.default()
-intents.message_content = True
-
-bot = commands.Bot(command_prefix='$', intents=intents)
-CENSORED_WORDS = ["fook", "fooking",]
-
-@bot.event
-async def on_ready():
-    print(f'We have logged in as {bot.user}')
-
-@bot.command()
-async def hello(ctx):
-    await ctx.send(f'ку')
-
-@bot.command()
-async def heh(ctx, count_heh = 5):
-    await ctx.send("he" * count_heh)
-
-@bot.event
-async def on_message(message):
-    for content in message.content.split():
-        for censored_word in CENSORED_WORDS:
-            if content == censored_word:
-                await message.delete()
-                await message.channel.send(f"{message.author.mention} атата по попе за такие слова!")
-
-bot.run("MTE0NDk2MDE0NjQxODcwMDM0OA.Gb9PQE.TLduL_NpcdWe4hJX-4YDoS0GfbSqc5zXw81GAc")
+if word in meme_dict.keys():
+    print (meme_dict.get(word)) # Что делать, если слово нашлось?
+else:
+    print ("Не хватает словарного запаса для описания вашего слова")
